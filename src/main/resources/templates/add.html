@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>日付計算アプリ</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header class="mb-5 navbar navbar-light bg-light">
+		<a th:href="@{'/index'}" class="navbar-brand">日付計算アプリ</a>
+	</header>
+	<main>
+		<div class="container">
+			<h4 class="mb-2">計算式のパターンを登録する</h4>
+			<div class="card">
+				<div class="card-body">
+					<form th:action="@{/add}" method="post" th:object="${pattern}">
+						<div class="form-group">
+							<label for="dateId">日付ID</label>
+							<input class="form-control" type="text" th:field="*{dateId}" />
+						</div>
+						<div class="form-group">
+							<label for="dateName">日付名</label>
+							<input class="form-control" type="text" th:field="*{dateName}" />
+						</div>
+						<div class="form-group">
+							<label for="calcY">加減値(年)</label>
+							<input class="form-control" type="number" th:field="*{calcY}" />
+						</div>
+						<div class="form-group">
+							<label for="calcM">加減値(月)</label>
+							<input class="form-control" type="number" th:field="*{calcM}" />
+						</div>
+						<div class="form-group">
+							<label for="calcD">加減値(日)</label>
+							<input class="form-control" type="number" th:field="*{calcD}" />
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<a th:href="@{'/index'}" class="btn btn-outline-primary">戻る</a>
+							<button class="btn btn-primary" type="submit">追加する</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>日付計算アプリ</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header class="mb-5 navbar navbar-light bg-light">
+		<a th:href="@{'/index'}" class="navbar-brand">日付計算アプリ</a>
+	</header>
+	<main>
+		<div class="container">
+			<table class="table table-bordered mb-3">
+				<thead>
+					<tr>
+						<th width="80">NO.</th>
+						<th>日付ID</th>
+						<th width="220">日付名</th>
+						<th>加減値(年)</th>
+						<th>加減値(月)</th>
+						<th>加減値(日)</th>
+						<th>編集</th>
+					</tr>
+				</thead>
+				<tbody>
+					<form method="post" th:action="@{/pattern}" th:each="pattern: ${pattern}" th:object="${pattern}">
+						<tr>
+							<td><input class="form-control" type="number" name="number" th:value="*{number}" readonly/></td>
+							<td><input class="form-control" type="text" name="dateId" th:value="*{dateId}"/></td>
+							<td><input class="form-control" type="text" name="dateName" th:value="*{dateName}"/></td>
+							<td><input class="form-control" type="number" name="calcY" th:value="*{calcY}"/></td>
+							<td><input class="form-control" type="number" name="calcM" th:value="*{calcM}"/></td>
+							<td><input class="form-control" type="number" name="calcD" th:value="*{calcD}"/></td>
+							<td class="text-center">
+								<button class="btn btn-sm btn-primary mb-1" type="submit" name="update">更新</button>
+								<button class="btn btn-sm btn-danger" type="submit" name="delete" th:value="${pattern.number}">削除</button>
+							</td>
+						</tr>
+					</form>
+				</tbody>
+			</table>
+			<div class="d-flex justify-content-between align-items-center">
+				<a th:href="@{'/index'}" class="btn btn-outline-primary">戻る</a>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
