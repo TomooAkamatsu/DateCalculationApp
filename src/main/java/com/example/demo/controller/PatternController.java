@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +37,17 @@ public class PatternController {
 	}
 	
 	@PostMapping(value="/pattern", params = "update")
-	public String postUpdatePattern(Pattern pattern) {
-		System.out.println(pattern);
+	public String postUpdatePattern(@Validated Pattern pattern,
+			BindingResult bindingResult, Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			List<String> errorList = new ArrayList<String>();
+			for(ObjectError error: bindingResult.getAllErrors()) {
+				errorList.add(error.getDefaultMessage());
+			}
+			model.addAttribute("validationError", errorList);
+			return getPattern(model);
+		}
 		
 		dateCalcMapper.updatePattern(pattern);
 		
@@ -44,12 +57,9 @@ public class PatternController {
 	@PostMapping(value="/pattern", params = "delete")
 	public String postDeletePattern(@RequestParam("delete") String strNumber) {
 		
-		int number = Integer.parseInt(strNumber);	
-		
+		int number = Integer.parseInt(strNumber);
 		dateCalcMapper.deletePattern(number);
 		
 		return "redirect:/pattern";
 	}
-	
-
 }

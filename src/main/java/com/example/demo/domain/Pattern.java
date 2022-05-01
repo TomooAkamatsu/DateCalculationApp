@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -7,8 +8,10 @@ public class Pattern {
 	
 	private int number;
 	
+	@NotBlank(message = "日付IDを入力してください")
 	private String dateId;
 	
+	@NotBlank(message = "日付名を入力してください")
 	private String dateName;
 	
 	private int calcY;
@@ -16,4 +19,5 @@ public class Pattern {
 	private int calcM;
 	
 	private int calcD;
+
 }

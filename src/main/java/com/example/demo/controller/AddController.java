@@ -1,8 +1,14 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,7 +22,7 @@ public class AddController {
 	DateCalcMapper dateCalcMapper;
 	
 	@GetMapping("/add")
-	public String getAdd(Model model) {
+	public String getAdd(Model model, Pattern pattern) {
 		
 		model.addAttribute("pattern", new Pattern());
 		
@@ -24,14 +30,19 @@ public class AddController {
 	}
 	
 	@PostMapping("/add")
-	public String postAdd(Pattern pattern) {
+	public String postAdd(@Validated Pattern pattern,
+			BindingResult bindingResult, Model model) {
 		
-		System.out.println(pattern);
-		
+		if(bindingResult.hasErrors()) {
+			List<String> errorList = new ArrayList<String>();
+			for(ObjectError error: bindingResult.getAllErrors()) {
+				errorList.add(error.getDefaultMessage());
+			}
+			model.addAttribute("validationError", errorList);
+			return "add";
+		}
 		dateCalcMapper.addPattern(pattern);
-		
 		
 		return "redirect:/index";
 	}
-
 }

@@ -43,6 +43,13 @@
 					</form>
 				</tbody>
 			</table>
+			<div>
+				<tr th:if="${validationError}" th:each="error : ${validationError}">
+            		<td>
+            			<p class="text-danger" th:text="${error}"></p>
+            		</td>
+        		</tr>
+			</div>
 			<div class="d-flex justify-content-between align-items-center">
 				<a th:href="@{'/index'}" class="btn btn-outline-primary">戻る</a>
 			</div>

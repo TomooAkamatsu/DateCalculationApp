@@ -38,6 +38,13 @@
 							<label for="calcD">加減値(日)</label>
 							<input class="form-control" type="number" th:field="*{calcD}" />
 						</div>
+						<div>
+							<tr th:if="${validationError}" th:each="error : ${validationError}">
+            					<td>
+            						<p class="text-danger" th:text="${error}"></p>
+            					</td>
+        					</tr>
+						</div>
 						<div class="d-flex justify-content-between align-items-center">
 							<a th:href="@{'/index'}" class="btn btn-outline-primary">戻る</a>
 							<button class="btn btn-primary" type="submit">追加する</button>
