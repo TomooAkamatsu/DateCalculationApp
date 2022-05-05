@@ -19,20 +19,20 @@ public class IndexController {
 	private final DateCalcService dateCalcService;
 
 	@GetMapping
-	public String getIndex(Model model) {
+	public String getIndex() {
 		return "index";
 	}
 
 	@GetMapping("/result")
-	public String postIndex(Model model, @RequestParam("date") String date) {
+	public String getResult(Model model, @RequestParam("date") String date) {
 
-//		入力が空だった場合は処理をせずリダイレクト
+//		入力が空だった場合は何もしない
 		if(StringUtils.isEmpty(date)){
 			return "index";
 		}
 		
-		model.addAttribute("resultList",dateCalcService.calcDate(date));
-		model.addAttribute("standartDate", dateCalcService.getStandartDate(date));
+		model.addAttribute("resultList", dateCalcService.calcDate(date));
+		model.addAttribute("standardDate", date.replace('-','/'));
 		
 		return "index";
 	}

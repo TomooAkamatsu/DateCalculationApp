@@ -19,17 +19,11 @@ public class DateCalcService {
 
 	private final DateCalcMapper dateCalcMapper;
 
-	public List<Pattern> getPattern(){
+	public List<Pattern> getCalcPattern(){
 		List<Pattern> dateCalcList = dateCalcMapper.findAll();
 		return dateCalcList;
 	}
 	
-	public String getStandartDate(String strDate) {
-		String standartDate = strDate.replace('-','/');
-		
-		return standartDate;
-	}
-
 	public List<CalcResult> calcDate(String strDate) {
 		
 //		日付をString型からLocalDate型へ変換
@@ -58,12 +52,24 @@ public class DateCalcService {
 					strDateCalculated,
 					pattern.getCalcY() + "/" + pattern.getCalcM() + "/" + pattern.getCalcD()
 					);
-	
 			
 //			作成したインスタンスをListに追加
 			calcResultList.add(calcResult);
 		}
 		return calcResultList;
 	}
+	
+	public void addPattern(Pattern pattern){
+		dateCalcMapper.addPattern(pattern);
+	}
+	
+	public void updatePattern(Pattern pattern) {
+		dateCalcMapper.updatePattern(pattern);
+	}
+	
+	public void deletePattern(int id) {
+		dateCalcMapper.deletePattern(id);
+	}
+	
 	
 }

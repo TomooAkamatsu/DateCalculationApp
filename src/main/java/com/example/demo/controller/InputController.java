@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.Pattern;
-import com.example.demo.repository.DateCalcMapper;
+import com.example.demo.service.DateCalcService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class InputController {
 	
-	private final DateCalcMapper dateCalcMapper;
+	private final DateCalcService dateCalcService;
 	
 	@GetMapping
 	public String getAdd(Model model, Pattern pattern) {
@@ -44,7 +44,8 @@ public class InputController {
 			model.addAttribute("validationError", errorList);
 			return "add";
 		}
-		dateCalcMapper.addPattern(pattern);
+		
+		dateCalcService.addPattern(pattern);
 		
 		return "index";
 	}

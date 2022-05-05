@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.Pattern;
-import com.example.demo.repository.DateCalcMapper;
 import com.example.demo.service.DateCalcService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,12 +26,10 @@ public class EditController {
 
 	private final DateCalcService dateCalcService;
 	
-	private final DateCalcMapper dateCalcMapper;
-	
 	@GetMapping
 	public String getPattern(Model model) {
 		
-		List<Pattern> patternList = dateCalcService.getPattern();
+		List<Pattern> patternList = dateCalcService.getCalcPattern();
 		
 		model.addAttribute("pattern", patternList);
 		
@@ -52,7 +49,7 @@ public class EditController {
 			return getPattern(model);
 		}
 		
-		dateCalcMapper.updatePattern(pattern);
+		dateCalcService.updatePattern(pattern);
 		
 		return "redirect:/date-calculation/edit";
 	}
@@ -61,7 +58,7 @@ public class EditController {
 	public String postDeletePattern(@RequestParam("delete") String strNumber) {
 		
 		int number = Integer.parseInt(strNumber);
-		dateCalcMapper.deletePattern(number);
+		dateCalcService.deletePattern(number);
 		
 		return "redirect:/date-calculation/edit";
 	}
