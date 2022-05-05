@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapperとxmlのマッピング -->
+<mapper namespace="com.example.demo.repository.DateCalcMapper">
+
+	<select id="findAll" resultType="Pattern">
+		SELECT
+			*
+		FROM
+			calc_pattern
+	</select>
+
+	<insert id="addPattern">
+		INSERT INTO calc_pattern
+		(
+			date_id,
+			date_name,
+			calc_y,
+			calc_m,
+			calc_d
+		)
+		VALUES
+		(
+			#{dateId},
+			#{dateName},
+			#{calcY},
+			#{calcM},
+			#{calcD}
+		)
+	</insert>
+
+	<delete id="deletePattern">
+		DELETE FROM
+			calc_pattern
+		WHERE
+			number = #{number}
+	</delete>
+	
+	<update id="updatePattern">
+		UPDATE calc_pattern
+		SET
+			date_id = #{dateId},
+			date_name = #{dateName},
+			calc_y = #{calcY},
+			calc_m = #{calcM},
+			calc_d = #{calcD}
+		WHERE
+			number = #{number}
+	</update>
+
+
+</mapper>

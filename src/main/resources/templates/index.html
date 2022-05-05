@@ -15,7 +15,7 @@
 	<main>
 		<div class="container">
 			<h5>計算の基準となる日付を入力してください</h5>
-			<form method="post" th:action="@{/index}">
+			<form method="get" th:action="@{/date-calculation/index/result}">
 				<input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
 				<button class="btn btn-primary mb-4" type="submit">計算する</button>
 			</form>

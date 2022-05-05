@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,14 +16,16 @@ import com.example.demo.domain.Pattern;
 import com.example.demo.repository.DateCalcMapper;
 import com.example.demo.service.DateCalcService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class PatternController {
 	
-	@Autowired
-	DateCalcService dateCalcService;
+
+	private final DateCalcService dateCalcService;
 	
-	@Autowired
-	DateCalcMapper dateCalcMapper;
+	private final DateCalcMapper dateCalcMapper;
 	
 	@GetMapping("/pattern")
 	public String getPattern(Model model) {
