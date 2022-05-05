@@ -10,27 +10,29 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.Pattern;
 import com.example.demo.repository.DateCalcMapper;
 
 import lombok.RequiredArgsConstructor;
 
+@RequestMapping("/date-calculation/input")
 @RequiredArgsConstructor
 @Controller
-public class AddController {
+public class InputController {
 	
 	private final DateCalcMapper dateCalcMapper;
 	
-	@GetMapping("/add")
+	@GetMapping
 	public String getAdd(Model model, Pattern pattern) {
 		
 		model.addAttribute("pattern", new Pattern());
 		
-		return "add";
+		return "input";
 	}
 	
-	@PostMapping("/add")
+	@PostMapping
 	public String postAdd(@Validated Pattern pattern,
 			BindingResult bindingResult, Model model) {
 		
@@ -44,6 +46,6 @@ public class AddController {
 		}
 		dateCalcMapper.addPattern(pattern);
 		
-		return "redirect:/index";
+		return "index";
 	}
 }

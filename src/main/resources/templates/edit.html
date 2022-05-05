@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header class="mb-5 navbar navbar-light bg-light">
-		<a th:href="@{'/index'}" class="navbar-brand">日付計算アプリ</a>
+		<a th:href="@{'/date-calculation/index'}" class="navbar-brand">日付計算アプリ</a>
 	</header>
 	<main>
 		<div class="container">
@@ -27,7 +27,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<form method="post" th:action="@{/pattern}" th:each="pattern: ${pattern}" th:object="${pattern}">
+					<form method="post" th:action="@{/date-calculation/edit}" th:each="pattern: ${pattern}" th:object="${pattern}">
 						<tr>
 							<td><input class="form-control" type="number" name="number" th:value="*{number}" readonly/></td>
 							<td><input class="form-control" type="text" name="dateId" th:value="*{dateId}"/></td>
@@ -51,7 +51,7 @@
         		</tr>
 			</div>
 			<div class="d-flex justify-content-between align-items-center">
-				<a th:href="@{'/index'}" class="btn btn-outline-primary">戻る</a>
+				<a th:href="@{'/date-calculation/index'}" class="btn btn-outline-primary">戻る</a>
 			</div>
 		</div>
 	</main>

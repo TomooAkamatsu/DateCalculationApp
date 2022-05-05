@@ -11,24 +11,24 @@ import com.example.demo.service.DateCalcService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/date-calculation")
+@RequestMapping("/date-calculation/index")
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
 	private final DateCalcService dateCalcService;
 
-	@GetMapping("/index")
+	@GetMapping
 	public String getIndex(Model model) {
 		return "index";
 	}
 
-	@GetMapping("/index/result")
+	@GetMapping("/result")
 	public String postIndex(Model model, @RequestParam("date") String date) {
 
 //		入力が空だった場合は処理をせずリダイレクト
 		if(StringUtils.isEmpty(date)){
-			return "redirect:/index";
+			return "index";
 		}
 		
 		model.addAttribute("resultList",dateCalcService.calcDate(date));

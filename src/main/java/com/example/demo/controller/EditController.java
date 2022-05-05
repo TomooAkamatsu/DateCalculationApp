@@ -10,6 +10,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.Pattern;
@@ -18,26 +19,27 @@ import com.example.demo.service.DateCalcService;
 
 import lombok.RequiredArgsConstructor;
 
+@RequestMapping("/date-calculation/edit")
 @RequiredArgsConstructor
 @Controller
-public class PatternController {
+public class EditController {
 	
 
 	private final DateCalcService dateCalcService;
 	
 	private final DateCalcMapper dateCalcMapper;
 	
-	@GetMapping("/pattern")
+	@GetMapping
 	public String getPattern(Model model) {
 		
 		List<Pattern> patternList = dateCalcService.getPattern();
 		
 		model.addAttribute("pattern", patternList);
 		
-		return "pattern";
+		return "edit";
 	}
 	
-	@PostMapping(value="/pattern", params = "update")
+	@PostMapping(params = "update")
 	public String postUpdatePattern(@Validated Pattern pattern,
 			BindingResult bindingResult, Model model) {
 		
@@ -52,15 +54,15 @@ public class PatternController {
 		
 		dateCalcMapper.updatePattern(pattern);
 		
-		return "redirect:/pattern";
+		return "redirect:/date-calculation/edit";
 	}
 	
-	@PostMapping(value="/pattern", params = "delete")
+	@PostMapping(params = "delete")
 	public String postDeletePattern(@RequestParam("delete") String strNumber) {
 		
 		int number = Integer.parseInt(strNumber);
 		dateCalcMapper.deletePattern(number);
 		
-		return "redirect:/pattern";
+		return "redirect:/date-calculation/edit";
 	}
 }

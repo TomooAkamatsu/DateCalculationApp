@@ -31,14 +31,6 @@ public class DateCalcService {
 	}
 
 	public List<CalcResult> calcDate(String strDate) {
-//		計算基準となる日付を表示する用の変数
-//		String standartDate;
-		
-//		Listを初期化
-//		calcResultList.clear();
-		
-//		'-'から'/'に置換して変数に代入
-//		standartDate = strDate.replace('-','/');
 		
 //		日付をString型からLocalDate型へ変換
 		LocalDate date = LocalDate.parse(strDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
