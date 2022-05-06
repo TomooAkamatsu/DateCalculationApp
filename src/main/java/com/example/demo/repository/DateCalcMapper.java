@@ -16,7 +16,7 @@ public interface DateCalcMapper {
 	public void addPattern(Pattern pattern);
 
 //	削除
-	public void deletePattern(int number);
+	public void deletePattern(int id);
 
 //	更新
 	public void updatePattern(Pattern pattern);

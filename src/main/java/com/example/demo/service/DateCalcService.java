@@ -46,7 +46,7 @@ public class DateCalcService {
 
 //			計算結果を含めた引数を渡して結果表示用のインスタンスを作成
 			CalcResult calcResult = new CalcResult(
-					pattern.getNumber(),
+					pattern.getId(),
 					pattern.getDateId(),
 					pattern.getDateName(),
 					strDateCalculated,

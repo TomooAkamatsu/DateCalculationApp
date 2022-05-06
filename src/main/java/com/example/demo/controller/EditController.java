@@ -55,10 +55,10 @@ public class EditController {
 	}
 	
 	@PostMapping(params = "delete")
-	public String postDeletePattern(@RequestParam("delete") String strNumber) {
+	public String postDeletePattern(@RequestParam("delete") String strId) {
 		
-		int number = Integer.parseInt(strNumber);
-		dateCalcService.deletePattern(number);
+		int id = Integer.parseInt(strId);
+		dateCalcService.deletePattern(id);
 		
 		return "redirect:/date-calculation/edit";
 	}

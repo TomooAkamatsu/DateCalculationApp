@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Pattern {
 	
-	private int number;
+	private int id;
 	
 	@NotBlank(message = "日付IDを入力してください")
 	private String dateId;

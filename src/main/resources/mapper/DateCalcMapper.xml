@@ -35,7 +35,7 @@
 		DELETE FROM
 			calc_pattern
 		WHERE
-			number = #{number}
+			id = #{id}
 	</delete>
 	
 	<update id="updatePattern">
@@ -47,8 +47,7 @@
 			calc_m = #{calcM},
 			calc_d = #{calcD}
 		WHERE
-			number = #{number}
+			id = #{id}
 	</update>
-
 
 </mapper>

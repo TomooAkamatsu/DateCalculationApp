@@ -29,7 +29,7 @@
 				<tbody>
 					<form method="post" th:action="@{/date-calculation/edit}" th:each="pattern: ${pattern}" th:object="${pattern}">
 						<tr>
-							<td><input class="form-control" type="number" name="number" th:value="*{number}" readonly/></td>
+							<td><input class="form-control" type="number" name="id" th:value="*{id}" readonly/></td>
 							<td><input class="form-control" type="text" name="dateId" th:value="*{dateId}"/></td>
 							<td><input class="form-control" type="text" name="dateName" th:value="*{dateName}"/></td>
 							<td><input class="form-control" type="number" name="calcY" th:value="*{calcY}"/></td>
@@ -37,7 +37,7 @@
 							<td><input class="form-control" type="number" name="calcD" th:value="*{calcD}"/></td>
 							<td class="text-center">
 								<button class="btn btn-sm btn-primary mb-1" type="submit" name="update">更新</button>
-								<button class="btn btn-sm btn-danger" type="submit" name="delete" th:value="${pattern.number}">削除</button>
+								<button class="btn btn-sm btn-danger" type="submit" name="delete" th:value="${pattern.id}">削除</button>
 							</td>
 						</tr>
 					</form>
