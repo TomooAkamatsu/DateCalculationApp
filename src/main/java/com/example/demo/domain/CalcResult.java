@@ -1,20 +1,18 @@
 package com.example.demo.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class CalcResult {
 
-	private int id;
+	private final int id;
 
-	private String dateId;
+	private final String dateId;
 
-	private String dateName;
+	private final String dateName;
 
-	private String dateCalculated;
+	private final String dateCalculated;
 
-	private String calcParam;
+	private final String calcParam;
 
 }
