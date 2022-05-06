@@ -1,11 +1,13 @@
 package com.example.demo.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class CalcResult {
 
-	private int number;
+	private int id;
 
 	private String dateId;
 
@@ -14,15 +16,6 @@ public class CalcResult {
 	private String dateCalculated;
 
 	private String calcParam;
-
-
-	public CalcResult(int number, String dateId, String dateName, String dateCalculated, String calcParam) {
-		this.number = number;
-		this.dateId = dateId;
-		this.dateName = dateName;
-		this.dateCalculated = dateCalculated;
-		this.calcParam = calcParam;
-	}
 
 }
 

@@ -32,6 +32,7 @@ public class IndexController {
 		}
 		
 		model.addAttribute("resultList", dateCalcService.calcDate(date));
+		
 		model.addAttribute("standardDate", date.replace('-','/'));
 		
 		return "index";
