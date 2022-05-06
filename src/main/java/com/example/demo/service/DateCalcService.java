@@ -59,17 +59,16 @@ public class DateCalcService {
 		return calcResultList;
 	}
 	
-	public void addPattern(Pattern pattern){
-		dateCalcMapper.addPattern(pattern);
+	public void addCalcPattern(Pattern pattern){
+		dateCalcMapper.addCalcPattern(pattern);
 	}
 	
-	public void updatePattern(Pattern pattern) {
-		dateCalcMapper.updatePattern(pattern);
+	public void updateCalcPattern(Pattern pattern) {
+		dateCalcMapper.updateCalcPattern(pattern);
 	}
 	
-	public void deletePattern(int id) {
-		dateCalcMapper.deletePattern(id);
+	public void deleteCalcPattern(int id) {
+		dateCalcMapper.deleteCalcPattern(id);
 	}
-	
 	
 }

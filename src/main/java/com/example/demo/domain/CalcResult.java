@@ -18,4 +18,3 @@ public class CalcResult {
 	private String calcParam;
 
 }
-

@@ -29,9 +29,7 @@ public class EditController {
 	@GetMapping
 	public String getPattern(Model model) {
 		
-		List<Pattern> patternList = dateCalcService.getCalcPattern();
-		
-		model.addAttribute("pattern", patternList);
+		model.addAttribute("pattern", dateCalcService.getCalcPattern());
 		
 		return "edit";
 	}
@@ -49,7 +47,7 @@ public class EditController {
 			return getPattern(model);
 		}
 		
-		dateCalcService.updatePattern(pattern);
+		dateCalcService.updateCalcPattern(pattern);
 		
 		return "redirect:/date-calculation/edit";
 	}
@@ -57,8 +55,7 @@ public class EditController {
 	@PostMapping(params = "delete")
 	public String postDeletePattern(@RequestParam("delete") String strId) {
 		
-		int id = Integer.parseInt(strId);
-		dateCalcService.deletePattern(id);
+		dateCalcService.deleteCalcPattern(Integer.parseInt(strId));
 		
 		return "redirect:/date-calculation/edit";
 	}

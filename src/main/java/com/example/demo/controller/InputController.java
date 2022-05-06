@@ -45,7 +45,7 @@ public class InputController {
 			return "add";
 		}
 		
-		dateCalcService.addPattern(pattern);
+		dateCalcService.addCalcPattern(pattern);
 		
 		return "index";
 	}

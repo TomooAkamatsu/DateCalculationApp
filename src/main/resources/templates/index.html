@@ -15,11 +15,11 @@
 	<main>
 		<div class="container">
 			<h5>計算の基準となる日付を入力してください</h5>
-			<form method="get" th:action="@{/date-calculation/index/result}">
-				<input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
-				<button class="btn btn-primary mb-4" type="submit">計算する</button>
+			<form method="get" th:action="@{/date-calculation/index}">
+  				<input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
+  				<button class="btn btn-primary mb-4" type="submit">計算する</button>
 			</form>
-
+			
 			<h4 th:if="${standardDate} != null"  th:text="${standardDate} + ' が基準です'"></h4>
 			
 			<div class="text-right mb-2">

@@ -19,12 +19,7 @@ public class IndexController {
 	private final DateCalcService dateCalcService;
 
 	@GetMapping
-	public String getIndex() {
-		return "index";
-	}
-
-	@GetMapping("/result")
-	public String getResult(Model model, @RequestParam("date") String date) {
+	public String getResult(Model model, @RequestParam(name ="date", required = false) String date) {
 
 //		入力が空だった場合は何もしない
 		if(StringUtils.isEmpty(date)){

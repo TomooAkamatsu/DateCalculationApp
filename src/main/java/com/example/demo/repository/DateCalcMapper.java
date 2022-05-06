@@ -8,17 +8,16 @@ import com.example.demo.domain.Pattern;
 @Mapper
 public interface DateCalcMapper {
 
-
 //	全件取得
 	public List<Pattern> findAll();
 
 //	新規登録
-	public void addPattern(Pattern pattern);
+	public void addCalcPattern(Pattern pattern);
 
 //	削除
-	public void deletePattern(int id);
+	public void deleteCalcPattern(int id);
 
 //	更新
-	public void updatePattern(Pattern pattern);
+	public void updateCalcPattern(Pattern pattern);
 
 }

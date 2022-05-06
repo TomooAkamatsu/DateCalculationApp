@@ -12,7 +12,7 @@
 			calc_pattern
 	</select>
 
-	<insert id="addPattern">
+	<insert id="addCalcPattern">
 		INSERT INTO calc_pattern
 		(
 			date_id,
@@ -31,14 +31,14 @@
 		)
 	</insert>
 
-	<delete id="deletePattern">
+	<delete id="deleteCalcPattern">
 		DELETE FROM
 			calc_pattern
 		WHERE
 			id = #{id}
 	</delete>
 	
-	<update id="updatePattern">
+	<update id="updateCalcPattern">
 		UPDATE calc_pattern
 		SET
 			date_id = #{dateId},
