@@ -17,10 +17,10 @@ import com.example.demo.service.DateCalcService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/date-calculation/input")
+@RequestMapping("/date-calculation/new")
 @RequiredArgsConstructor
 @Controller
-public class InputController {
+public class NewController {
 	
 	private final DateCalcService dateCalcService;
 	
@@ -29,7 +29,7 @@ public class InputController {
 		
 		model.addAttribute("pattern", new Pattern());
 		
-		return "input";
+		return "new";
 	}
 	
 	@PostMapping

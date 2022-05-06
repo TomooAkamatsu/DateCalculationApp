@@ -17,7 +17,7 @@
 			<h4 class="mb-2">計算式のパターンを登録する</h4>
 			<div class="card">
 				<div class="card-body">
-					<form th:action="@{/date-calculation/input}" method="post" th:object="${pattern}">
+					<form th:action="@{/date-calculation/new}" method="post" th:object="${pattern}">
 						<div class="form-group">
 							<label for="dateId">日付ID</label>
 							<input class="form-control" type="text" th:field="*{dateId}" />
