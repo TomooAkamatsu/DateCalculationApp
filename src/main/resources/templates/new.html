@@ -10,14 +10,14 @@
 </head>
 <body>
 	<header class="mb-5 navbar navbar-light bg-light">
-		<a th:href="@{'/index'}" class="navbar-brand">日付計算アプリ</a>
+		<a th:href="@{'/date-calculation/index'}" class="navbar-brand">日付計算アプリ</a>
 	</header>
 	<main>
 		<div class="container">
 			<h4 class="mb-2">計算式のパターンを登録する</h4>
 			<div class="card">
 				<div class="card-body">
-					<form th:action="@{/add}" method="post" th:object="${pattern}">
+					<form th:action="@{/date-calculation/new}" method="post" th:object="${pattern}">
 						<div class="form-group">
 							<label for="dateId">日付ID</label>
 							<input class="form-control" type="text" th:field="*{dateId}" />
@@ -46,7 +46,7 @@
         					</tr>
 						</div>
 						<div class="d-flex justify-content-between align-items-center">
-							<a th:href="@{'/index'}" class="btn btn-outline-primary">戻る</a>
+							<a th:href="@{'/date-calculation/index'}" class="btn btn-outline-primary">戻る</a>
 							<button class="btn btn-primary" type="submit">追加する</button>
 						</div>
 					</form>

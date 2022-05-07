@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,25 +10,29 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.Pattern;
-import com.example.demo.repository.DateCalcMapper;
+import com.example.demo.service.DateCalcService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequestMapping("/date-calculation/new")
+@RequiredArgsConstructor
 @Controller
-public class AddController {
+public class NewController {
 	
-	@Autowired
-	DateCalcMapper dateCalcMapper;
+	private final DateCalcService dateCalcService;
 	
-	@GetMapping("/add")
+	@GetMapping
 	public String getAdd(Model model, Pattern pattern) {
 		
 		model.addAttribute("pattern", new Pattern());
 		
-		return "add";
+		return "new";
 	}
 	
-	@PostMapping("/add")
+	@PostMapping
 	public String postAdd(@Validated Pattern pattern,
 			BindingResult bindingResult, Model model) {
 		
@@ -41,8 +44,9 @@ public class AddController {
 			model.addAttribute("validationError", errorList);
 			return "add";
 		}
-		dateCalcMapper.addPattern(pattern);
 		
-		return "redirect:/index";
+		dateCalcService.addCalcPattern(pattern);
+		
+		return "index";
 	}
 }

@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,32 +10,31 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.Pattern;
-import com.example.demo.repository.DateCalcMapper;
 import com.example.demo.service.DateCalcService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequestMapping("/date-calculation/edit")
+@RequiredArgsConstructor
 @Controller
-public class PatternController {
+public class EditController {
 	
-	@Autowired
-	DateCalcService dateCalcService;
+
+	private final DateCalcService dateCalcService;
 	
-	@Autowired
-	DateCalcMapper dateCalcMapper;
-	
-	@GetMapping("/pattern")
+	@GetMapping
 	public String getPattern(Model model) {
 		
-		List<Pattern> patternList = dateCalcService.getPattern();
+		model.addAttribute("pattern", dateCalcService.getCalcPattern());
 		
-		model.addAttribute("pattern", patternList);
-		
-		return "pattern";
+		return "edit";
 	}
 	
-	@PostMapping(value="/pattern", params = "update")
+	@PostMapping(params = "update")
 	public String postUpdatePattern(@Validated Pattern pattern,
 			BindingResult bindingResult, Model model) {
 		
@@ -49,17 +47,16 @@ public class PatternController {
 			return getPattern(model);
 		}
 		
-		dateCalcMapper.updatePattern(pattern);
+		dateCalcService.updateCalcPattern(pattern);
 		
-		return "redirect:/pattern";
+		return "redirect:/date-calculation/edit";
 	}
 	
-	@PostMapping(value="/pattern", params = "delete")
-	public String postDeletePattern(@RequestParam("delete") String strNumber) {
+	@PostMapping(params = "delete")
+	public String postDeletePattern(@RequestParam("delete") String id) {
 		
-		int number = Integer.parseInt(strNumber);
-		dateCalcMapper.deletePattern(number);
+		dateCalcService.deleteCalcPattern(Integer.parseInt(id));
 		
-		return "redirect:/pattern";
+		return "redirect:/date-calculation/edit";
 	}
 }

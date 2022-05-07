@@ -5,24 +5,14 @@ import lombok.Data;
 @Data
 public class CalcResult {
 
-	private int number;
+	private final int id;
 
-	private String dateId;
+	private final String dateId;
 
-	private String dateName;
+	private final String dateName;
 
-	private String dateCalculated;
+	private final String dateCalculated;
 
-	private String calcParam;
-
-
-	public CalcResult(int number, String dateId, String dateName, String dateCalculated, String calcParam) {
-		this.number = number;
-		this.dateId = dateId;
-		this.dateName = dateName;
-		this.dateCalculated = dateCalculated;
-		this.calcParam = calcParam;
-	}
+	private final String calcParam;
 
 }
-

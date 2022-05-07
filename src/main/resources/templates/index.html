@@ -10,21 +10,21 @@
 </head>
 <body>
 	<header class="mb-5 navbar navbar-light bg-light">
-		<a th:href="@{'/'}" class="navbar-brand">日付計算アプリ</a>
+		<a th:href="@{'/date-calculation/index'}" class="navbar-brand">日付計算アプリ</a>
 	</header>
 	<main>
 		<div class="container">
 			<h5>計算の基準となる日付を入力してください</h5>
-			<form method="post" th:action="@{/index}">
-				<input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
-				<button class="btn btn-primary mb-4" type="submit">計算する</button>
+			<form method="get" th:action="@{/date-calculation/index}">
+  				<input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
+  				<button class="btn btn-primary mb-4" type="submit">計算する</button>
 			</form>
-
-			<h4 th:if="${standartDate} != null"  th:text="${standartDate} + ' が基準です'"></h4>
+			
+			<h4 th:if="${standardDate} != null"  th:text="${standardDate} + ' が基準です'"></h4>
 			
 			<div class="text-right mb-2">
-				<a th:href="@{'/pattern'}" class="btn btn-primary mr-1">編集</a>
-				<a th:href="@{'/add'}" class="btn btn-primary">新規登録</a>
+				<a th:href="@{'/date-calculation/edit'}" class="btn btn-primary mr-1">編集</a>
+				<a th:href="@{'/date-calculation/new'}" class="btn btn-primary">新規登録</a>
 			</div>
 			
 			<table class="table table-bordered mb-3">
@@ -39,7 +39,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="result : ${resultList}">
-						<td th:text="${result.number}" class="text-center"></td>
+						<td th:text="${result.id}" class="text-center"></td>
 						<td th:text="${result.dateId}" class="text-center"></td>
 						<td th:text="${result.dateName}" class="text-center"></td>
 						<td th:text="${result.dateCalculated}" class="text-center"></td>
