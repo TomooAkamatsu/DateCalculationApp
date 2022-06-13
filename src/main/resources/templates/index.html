@@ -1,53 +1,61 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>日付計算アプリ</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
-<link rel="stylesheet" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>日付計算アプリ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-	<header class="mb-5 navbar navbar-light bg-light">
-		<a th:href="@{'/date-calculation/index'}" class="navbar-brand">日付計算アプリ</a>
-	</header>
-	<main>
-		<div class="container">
-			<h5>計算の基準となる日付を入力してください</h5>
-			<form method="get" th:action="@{/date-calculation/index}">
-  				<input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
-  				<button class="btn btn-primary mb-4" type="submit">計算する</button>
-			</form>
-			
-			<h4 th:if="${standardDate} != null"  th:text="${standardDate} + ' が基準です'"></h4>
-			
-			<div class="text-right mb-2">
-				<a th:href="@{'/date-calculation/edit'}" class="btn btn-primary mr-1">編集</a>
-				<a th:href="@{'/date-calculation/new'}" class="btn btn-primary">新規登録</a>
-			</div>
-			
-			<table class="table table-bordered mb-3">
-				<thead>
-					<tr>
-						<th width=50>NO.</th>
-						<th>日付ID</th>
-						<th width=260>日付名</th>
-						<th>計算結果</th>
-						<th>計算式(年/月/日)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="result : ${resultList}">
-						<td th:text="${result.id}" class="text-center"></td>
-						<td th:text="${result.dateId}" class="text-center"></td>
-						<td th:text="${result.dateName}" class="text-center"></td>
-						<td th:text="${result.dateCalculated}" class="text-center"></td>
-						<td th:text="${result.calcParam}" class="text-center"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</main>
+<header class="mb-5 navbar navbar-light bg-light">
+    <a th:href="@{'/date-calculation/index'}" class="navbar-brand">日付計算アプリ</a>
+    <div class="mt-3">
+        <ul>
+            <li class="list-unstyled" sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/date-calculation/users}" class="text-right">ユーザー一覧</a></li>
+            <li class="list-unstyled"><a th:href="@{/date-calculation/logout}">ログアウト</a></li>
+        </ul>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <h5>計算の基準となる日付を入力してください</h5>
+        <form method="get" th:action="@{/date-calculation/index}">
+            <input class="form-control mb-2 mr-4 w-25 float-left" type="date" name="date"/>
+            <button class="btn btn-primary mb-4" type="submit">計算する</button>
+        </form>
+
+        <h4 th:if="${standardDate} != null" th:text="${standardDate} + ' が基準です'"></h4>
+
+        <div class="text-right mb-2">
+            <a th:href="@{'/date-calculation/edit'}" class="btn btn-primary mr-1">編集</a>
+            <a th:href="@{'/date-calculation/new'}" class="btn btn-primary">新規登録</a>
+        </div>
+
+        <table class="table table-bordered mb-3">
+            <thead>
+            <tr>
+                <th width=50>NO.</th>
+                <th>日付ID</th>
+                <th width=260>日付名</th>
+                <th>計算結果</th>
+                <th>計算式(年/月/日)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="result : ${resultList}">
+                <td th:text="${result.id}" class="text-center"></td>
+                <td th:text="${result.dateId}" class="text-center"></td>
+                <td th:text="${result.dateName}" class="text-center"></td>
+                <td th:text="${result.dateCalculated}" class="text-center"></td>
+                <td th:text="${result.calcParam}" class="text-center"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 </body>
 </html>
